@@ -12,8 +12,14 @@ def download_audio_from_playlist(playlist_url, download_path):
     ydl_opts = {
         'format': 'bestaudio/best',
         'extract_audio': True,
-        'audio_format': 'mp3',
-        'outtmpl': f'{download_path}/%(title)s.%(ext)s'
+        'audio_format': 'mp3',  # convert to mp3
+        'outtmpl': f'{download_path}/%(title)s.%(ext)s',
+        'ignoreerrors': True,
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '192',
+        }],
     }
 
     with YoutubeDL(ydl_opts) as ydl:
