@@ -8,7 +8,7 @@ def choose_download_path():
     folder_selected = filedialog.askdirectory(title="Select download folder")
     return folder_selected
 
-def download_audio_from_playlist(playlist_url, download_path):
+def download_audio_from_link(playlist_url, download_path):
     ydl_opts = {
         'format': 'bestaudio/best',
         'extract_audio': True,
@@ -26,6 +26,6 @@ def download_audio_from_playlist(playlist_url, download_path):
         ydl.download([playlist_url])
 
 # Example usage
-playlist_url = input("Paste YouTube playlist URL: ")
+url = input("Paste YouTube video/playlist URL: ")
 download_path = choose_download_path()
-download_audio_from_playlist(playlist_url, download_path)
+download_audio_from_link(url, download_path)
