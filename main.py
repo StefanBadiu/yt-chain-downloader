@@ -27,22 +27,22 @@ def GUI():
 
     root = tk.Tk()
     root.title("YouTube Downloader")
-    root.geometry("400x250")
+    root.geometry("520x250")
 
     # Download path variable
     download_path_var = tk.StringVar()
 
     # URL entry
-    tk.Label(root, text="Enter YouTube video/playlist URL:").pack(pady=(10, 0))
+    tk.Label(root, text="Enter YouTube video/playlist URL:").grid(row=0, column=0, padx=10, pady=5)
     url_entry = tk.Entry(root, width=50)
-    url_entry.pack(pady=5)
+    url_entry.grid(row=1, column=0, padx=10, pady=5)
 
     # Path picker
-    tk.Button(root, text="Choose Download Path", command=choose_download_path).pack(pady=10)
-    tk.Label(root, textvariable=download_path_var).pack()
+    tk.Button(root, text="Choose Download Path", command=choose_download_path).grid(row=2, column=0, padx=10, pady=5)
+    tk.Label(root, textvariable=download_path_var).grid(row=2, column=1, padx=10, pady=5)
 
     # Submit button
-    tk.Button(root, text="Download", command=download_callback).pack(pady=10)
+    tk.Button(root, text="Download", command=download_callback).grid(row=3, column=0, padx=10, pady=5)
 
     root.mainloop()
 
