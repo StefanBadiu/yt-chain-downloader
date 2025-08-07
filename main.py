@@ -26,16 +26,25 @@ def GUI():
             messagebox.showerror("Download Failed", str(e))
 
     root = tk.Tk()
+    root.resizable(True, True)
     root.title("YouTube Downloader")
-    root.geometry("520x250")
+    root.geometry("500x250")
+    root.minsize(400, 160)
+    root.maxsize(800, 300)
 
     # Download path variable
     download_path_var = tk.StringVar()
 
     # URL entry
-    tk.Label(root, text="Enter YouTube video/playlist URL:").grid(row=0, column=0, padx=10, pady=5)
-    url_entry = tk.Entry(root, width=50)
-    url_entry.grid(row=1, column=0, padx=10, pady=5)
+    root.columnconfigure(0, weight=1)
+    tk.Label(root, text="Enter YouTube video/playlist URL:").grid(row=0, column=0, padx=0, pady=5)
+
+    entry_frame = tk.Frame(root)
+    entry_frame.grid(row=1, column=0, padx=10, pady=0, sticky="ew")
+    root.columnconfigure(0, weight=1)
+    entry_frame.columnconfigure(0, weight=1)
+    url_entry = tk.Entry(entry_frame, justify="center")
+    url_entry.grid(row=0, column=0, sticky="ew", ipady=3)
 
     # Path picker
     tk.Button(root, text="Choose Download Path", command=choose_download_path).grid(row=2, column=0, padx=10, pady=5)
