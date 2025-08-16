@@ -48,10 +48,10 @@ def GUI():
 
     # Path picker
     tk.Button(root, text="Choose Download Path", command=choose_download_path).grid(row=2, column=0, padx=10, pady=5)
-    tk.Label(root, textvariable=download_path_var).grid(row=2, column=1, padx=10, pady=5)
+    tk.Label(root, textvariable=download_path_var).grid(row=3, column=0, padx=10, pady=5)
 
     # Submit button
-    tk.Button(root, text="Download", command=download_callback).grid(row=3, column=0, padx=10, pady=5)
+    tk.Button(root, text="Download", command=download_callback).grid(row=4, column=0, padx=10, pady=5)
 
     root.mainloop()
 
