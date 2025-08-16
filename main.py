@@ -6,11 +6,12 @@ from yt_dlp import YoutubeDL
 def GUI():
     def choose_download_path():
         folder_selected = filedialog.askdirectory(title="Select download folder")
-        download_path_var.set(folder_selected)
+        download_path_var = folder_selected
+        download_path_display.set("PATH: \"" + download_path_var + "\"")
 
     def download_callback():
         url = url_entry.get()
-        path = download_path_var.get()
+        path = download_path_var
 
         if not url:
             messagebox.showerror("Error", "Please enter a YouTube URL")
@@ -33,7 +34,8 @@ def GUI():
     root.maxsize(800, 300)
 
     # Download path variable
-    download_path_var = tk.StringVar()
+    download_path_var = ""
+    download_path_display = tk.StringVar(value = "PATH: Not set")
 
     # URL entry
     root.columnconfigure(0, weight=1)
@@ -48,16 +50,12 @@ def GUI():
 
     # Path picker
     tk.Button(root, text="Choose Download Path", command=choose_download_path).grid(row=2, column=0, padx=10, pady=5)
-    tk.Label(root, textvariable=download_path_var).grid(row=3, column=0, padx=10, pady=5)
+    tk.Label(root, textvariable=download_path_display).grid(row=3, column=0, padx=10, pady=5)
 
     # Submit button
     tk.Button(root, text="Download", command=download_callback).grid(row=4, column=0, padx=10, pady=5)
 
     root.mainloop()
-
-def choose_download_path():
-    folder_selected = filedialog.askdirectory(title="Select download folder")
-    return folder_selected
 
 def download_audio_from_link(playlist_url, download_path):
     ydl_opts = {
