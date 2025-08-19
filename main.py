@@ -4,7 +4,10 @@ from yt_dlp import YoutubeDL
 
 
 def GUI():
+    download_path_var = ""  # Outer variable
+
     def choose_download_path():
+        nonlocal download_path_var  # Use nonlocal to modify the outer variable
         folder_selected = filedialog.askdirectory(title="Select download folder")
         download_path_var = folder_selected
         download_path_display.set("PATH: \"" + download_path_var + "\"")
@@ -17,7 +20,7 @@ def GUI():
             messagebox.showerror("Error", "Please enter a YouTube URL")
             return
         if not path:
-            messagebox.showerror("Error", "Please choose a download path")
+            messagebox.showerror("Error", "Please choose a download path.")
             return
 
         try:
@@ -34,7 +37,6 @@ def GUI():
     root.maxsize(800, 300)
 
     # Download path variable
-    download_path_var = ""
     download_path_display = tk.StringVar(value = "PATH: Not set")
 
     # URL entry
@@ -69,6 +71,8 @@ def download_audio_from_link(playlist_url, download_path):
             'preferredcodec': 'mp3',
             'preferredquality': '320',
         }],
+        'retries': 3,
+        #'verbose': True,
     }
 
     with YoutubeDL(ydl_opts) as ydl:
